@@ -1,0 +1,3 @@
+#  Pomodorko
+
+A pomodoro app
