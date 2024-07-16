@@ -7,15 +7,21 @@
 
 import SwiftUI
 
+// TODO: accesebility
+// TODO: timer text width should be bold when pomodoro is in active state
+// TODO: make theme globally accessible somehow
+
 struct PomodoroView: View {
     @Binding var pomodoro: Pomodoro
 
     var body: some View {
-        VStack {
+        VStack(spacing: 48) {
             ModeLabel(mode: pomodoro.mode)
-            Text("25")
-            Text("00")
-            HStack(spacing: 12) {
+            VStack {
+                TimerText(color: pomodoro.theme.accentColor, value: "25", weight: .light)
+                TimerText(color: pomodoro.theme.accentColor, value: "00", weight: .light)
+            }
+            HStack(spacing: 16) {
                 PomodoroButton(action: {},
                                icon: "ellipsis",
                                size: Size(80, 80),
