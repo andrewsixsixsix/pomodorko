@@ -41,9 +41,7 @@ struct ModeLabel: View {
     var body: some View {
         Label(name, systemImage: icon)
             .padding(8)
-            .overlay {
-                overlay
-            }
+            .overlay { overlay }
             .foregroundStyle(color)
             .accessibilityLabel("Pomodoro mode")
             .accessibilityValue(name)

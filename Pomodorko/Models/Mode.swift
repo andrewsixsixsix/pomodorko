@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Mode: String {
+enum Mode {
     case focus
     case shortBreak
     case longBreak
