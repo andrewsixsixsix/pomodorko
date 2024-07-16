@@ -24,6 +24,10 @@ enum Theme: String {
         Color(rawValue.appending("Fill"))
     }
 
+    var fillColorDark: Color {
+        Color(rawValue.appending("FillDark"))
+    }
+
     static func forMode(_ mode: Mode) -> Self {
         switch mode {
         case .focus:

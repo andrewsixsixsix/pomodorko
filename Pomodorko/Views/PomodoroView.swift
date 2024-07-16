@@ -15,16 +15,21 @@ struct PomodoroView: View {
             ModeLabel(mode: pomodoro.mode)
             Text("25")
             Text("00")
-            HStack {
-                Button(action: {}, label: {
-                    Text("Settings")
-                })
-                Button(action: {}, label: {
-                    Text("Play")
-                })
-                Button(action: {}, label: {
-                    Text("Next")
-                })
+            HStack(spacing: 12) {
+                PomodoroButton(action: {},
+                               icon: "ellipsis",
+                               size: Size(80, 80),
+                               theme: pomodoro.theme)
+                PomodoroButton(action: {},
+                               cornerRadius: 32,
+                               fill: Color(pomodoro.theme.fillColorDark),
+                               icon: "arrowtriangle.right.fill",
+                               size: Size(128, 96),
+                               theme: pomodoro.theme)
+                PomodoroButton(action: {},
+                               icon: "forward.fill",
+                               size: Size(80, 80),
+                               theme: pomodoro.theme)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

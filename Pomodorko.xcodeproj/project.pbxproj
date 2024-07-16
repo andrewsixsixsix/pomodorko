@@ -17,6 +17,8 @@
 		A1656AC72C442174007C76E8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1656AC62C442174007C76E8 /* Theme.swift */; };
 		A1656AC92C442401007C76E8 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1656AC82C442401007C76E8 /* Mode.swift */; };
 		A1656ACB2C444CC4007C76E8 /* Pomodoro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1656ACA2C444CC4007C76E8 /* Pomodoro.swift */; };
+		A1B008F92C46822C0082433F /* PomodoroButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B008F82C46822C0082433F /* PomodoroButton.swift */; };
+		A1B008FB2C4688920082433F /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B008FA2C4688920082433F /* Size.swift */; };
 		A1D154582C457C0E00D69E09 /* ModeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D154572C457C0E00D69E09 /* ModeLabel.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		A1656AC62C442174007C76E8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A1656AC82C442401007C76E8 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		A1656ACA2C444CC4007C76E8 /* Pomodoro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pomodoro.swift; sourceTree = "<group>"; };
+		A1B008F82C46822C0082433F /* PomodoroButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroButton.swift; sourceTree = "<group>"; };
+		A1B008FA2C4688920082433F /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		A1D154572C457C0E00D69E09 /* ModeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +157,7 @@
 				A1656AC62C442174007C76E8 /* Theme.swift */,
 				A1656AC82C442401007C76E8 /* Mode.swift */,
 				A1656ACA2C444CC4007C76E8 /* Pomodoro.swift */,
+				A1B008FA2C4688920082433F /* Size.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				A1D154572C457C0E00D69E09 /* ModeLabel.swift */,
+				A1B008F82C46822C0082433F /* PomodoroButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -295,6 +301,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B008FB2C4688920082433F /* Size.swift in Sources */,
+				A1B008F92C46822C0082433F /* PomodoroButton.swift in Sources */,
 				A1656AC72C442174007C76E8 /* Theme.swift in Sources */,
 				A1656AC52C442095007C76E8 /* PomodoroView.swift in Sources */,
 				A1D154582C457C0E00D69E09 /* ModeLabel.swift in Sources */,
