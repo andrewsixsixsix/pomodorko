@@ -9,10 +9,13 @@ import SwiftUI
 
 // TODO: accesebility
 // TODO: timer text width should be bold when pomodoro is in active state
+// TODO: replace "play" icon with "pause" in active state
 // TODO: make theme globally accessible somehow
 
 struct PomodoroView: View {
     @Binding var pomodoro: Pomodoro
+
+    @State private var isShowSettings = false
 
     var body: some View {
         VStack(spacing: 48) {
@@ -22,7 +25,7 @@ struct PomodoroView: View {
                 TimerText(color: pomodoro.theme.accentColor, value: "00", weight: .light)
             }
             HStack(spacing: 16) {
-                PomodoroButton(action: {},
+                PomodoroButton(action: { isShowSettings = true },
                                icon: "ellipsis",
                                size: Size(80, 80),
                                theme: pomodoro.theme)
@@ -40,6 +43,7 @@ struct PomodoroView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(pomodoro.theme.mainColor)
+        .sheet(isPresented: $isShowSettings) { SettingsView(theme: pomodoro.theme) }
     }
 }
 
