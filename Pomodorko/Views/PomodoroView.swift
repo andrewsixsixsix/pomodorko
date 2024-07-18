@@ -10,6 +10,7 @@ import SwiftUI
 // TODO: accesebility
 // TODO: timer text width should be bold when pomodoro is in active state
 // TODO: replace "play" icon with "pause" in active state
+// TODO: save settings when closing settings sheet, initialize settings with saved or defaults
 
 struct PomodoroView: View {
     @Binding var pomodoro: Pomodoro

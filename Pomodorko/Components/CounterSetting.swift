@@ -19,11 +19,15 @@ struct CounterSetting: View {
     var body: some View {
         HStack {
             Text(text)
+
             Spacer()
+
             HStack {
                 Text("\(value)")
                     .font(.system(size: 20))
+                    .frame(width: 32)
                     .padding(.horizontal, 20)
+
                 VStack(spacing: 8) {
                     Button {
                         increment()
@@ -32,6 +36,7 @@ struct CounterSetting: View {
                             .imageScale(.small)
                             .foregroundStyle(theme.accentColor)
                     }
+
                     Button {
                         decrement()
                     } label: {

@@ -11,12 +11,14 @@ import SwiftUI
 struct PomodorkoApp: App {
     // TODO: this should be a @StateObject
     @State private var pomodoro = Pomodoro(mode: .focus)
+    @StateObject private var settings = Settings()
     @StateObject private var theme = PomodoroTheme(mode: .focus)
 
     var body: some Scene {
         WindowGroup {
             PomodoroView(pomodoro: $pomodoro)
         }
+        .environmentObject(settings)
         .environmentObject(theme)
     }
 }

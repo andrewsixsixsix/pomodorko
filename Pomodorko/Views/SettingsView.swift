@@ -8,13 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var isAutoResume = false
-    @State private var isDarkMode = false
-    @State private var isSound = false
-    @State private var isNotifications = false
-
     @Environment(\.dismiss) private var dismiss
 
+    @EnvironmentObject var settings: Settings
     @EnvironmentObject var theme: PomodoroTheme
 
     var body: some View {
@@ -23,7 +19,9 @@ struct SettingsView: View {
                 Text("Settings")
                     .font(.title)
                     .fontWeight(.bold)
+
                 Spacer()
+
                 Button {
                     dismiss()
                 } label: {
@@ -32,38 +30,44 @@ struct SettingsView: View {
                 }
             }
             .padding(.bottom, 12)
-            Toggle(isOn: $isDarkMode) {
+
+            Toggle(isOn: $settings.isDarkMode) {
                 Text("Dark mode")
             }
             .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
-            CounterSetting(text: "Focus length",
-                           value: 25,
-                           increment: {},
-                           decrement: {})
-            CounterSetting(text: "Pomodoros untill long break",
-                           value: 25,
-                           increment: {},
-                           decrement: {})
-            CounterSetting(text: "Short break length",
-                           value: 25,
-                           increment: {},
-                           decrement: {})
-            CounterSetting(text: "Long break length",
-                           value: 25,
-                           increment: {},
-                           decrement: {})
-            Toggle(isOn: $isAutoResume) {
+
+            CounterSetting(text: "Focus duration",
+                           value: settings.focusDuration,
+                           increment: { settings.incrementFocusDuration() },
+                           decrement: { settings.decrementFocusDuration() })
+            CounterSetting(text: "Pomodoros until long break",
+                           value: settings.pomodorosUntilLongBreak,
+                           increment: { settings.incrementPomodorosUntilLongDuration() },
+                           decrement: { settings.decrementPomodorosUntilLongBreak() })
+            CounterSetting(text: "Short break duration",
+                           value: settings.shortBreakDuration,
+                           increment: { settings.incrementShortBreakDuration() },
+                           decrement: { settings.decrementShortBreakDuration() })
+            CounterSetting(text: "Long break duration",
+                           value: settings.longBreakDuration,
+                           increment: { settings.incrementLongBreakDuration() },
+                           decrement: { settings.decrementLongBreakDuration() })
+
+            Toggle(isOn: $settings.isAutoResume) {
                 Text("Auto resume timer")
             }
             .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
-            Toggle(isOn: $isSound) {
+
+            Toggle(isOn: $settings.isSound) {
                 Text("Sound")
             }
             .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
-            Toggle(isOn: $isNotifications) {
+
+            Toggle(isOn: $settings.isNotifications) {
                 Text("Notifications")
             }
-                .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
+            .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
+
             Spacer()
         }
         .padding()
@@ -75,15 +79,18 @@ struct SettingsView: View {
 
 #Preview("Focus") {
     SettingsView()
+        .environmentObject(Settings())
         .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
     SettingsView()
+        .environmentObject(Settings())
         .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
     SettingsView()
+        .environmentObject(Settings())
         .environmentObject(PomodoroTheme(mode: .longBreak))
 }
