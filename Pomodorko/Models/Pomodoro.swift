@@ -9,10 +9,10 @@ import Foundation
 
 struct Pomodoro {
     var mode: Mode
-    var theme: Theme
+    var theme: PomodoroTheme
 
     init(mode: Mode) {
         self.mode = mode
-        self.theme = Theme.forMode(mode)
+        self.theme = PomodoroTheme(mode: mode)
     }
 }

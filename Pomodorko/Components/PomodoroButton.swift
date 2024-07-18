@@ -13,7 +13,8 @@ struct PomodoroButton: View {
     var fill: Color?
     let icon: String
     let size: Size
-    let theme: Theme
+
+    @EnvironmentObject var theme: PomodoroTheme
 
     var body: some View {
         Button(action: action) {
@@ -32,24 +33,24 @@ struct PomodoroButton: View {
 
 #Preview("Focus") {
     PomodoroButton(action: {},
-                   fill: Theme.focus.fillColorDark,
+                   fill: PomodoroTheme(mode: .focus).fillColorDark,
                    icon: "arrowtriangle.right.fill",
-                   size: Size(80, 80),
-                   theme: Theme.focus)
+                   size: Size(80, 80))
+    .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
     PomodoroButton(action: {},
-                   fill: Theme.shortBreak.fillColorDark,
+                   fill: PomodoroTheme(mode: .shortBreak).fillColorDark,
                    icon: "arrowtriangle.right.fill",
-                   size: Size(80, 80),
-                   theme: Theme.shortBreak)
+                   size: Size(80, 80))
+    .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long breal") {
     PomodoroButton(action: {},
-                   fill: Theme.longBreak.fillColorDark,
+                   fill: PomodoroTheme(mode: .longBreak).fillColorDark,
                    icon: "arrowtriangle.right.fill",
-                   size: Size(80, 80),
-                   theme: Theme.longBreak)
+                   size: Size(80, 80))
+    .environmentObject(PomodoroTheme(mode: .longBreak))
 }

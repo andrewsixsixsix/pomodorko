@@ -10,10 +10,10 @@ import SwiftUI
 // TODO: accesebility
 // TODO: timer text width should be bold when pomodoro is in active state
 // TODO: replace "play" icon with "pause" in active state
-// TODO: make theme globally accessible somehow
 
 struct PomodoroView: View {
     @Binding var pomodoro: Pomodoro
+    @EnvironmentObject var theme: PomodoroTheme
 
     @State private var isShowSettings = false
 
@@ -21,40 +21,40 @@ struct PomodoroView: View {
         VStack(spacing: 48) {
             ModeLabel(mode: pomodoro.mode)
             VStack {
-                TimerText(color: pomodoro.theme.accentColor, value: "25", weight: .light)
-                TimerText(color: pomodoro.theme.accentColor, value: "00", weight: .light)
+                TimerText(value: "25", weight: .light)
+                TimerText(value: "00", weight: .light)
             }
             HStack(spacing: 16) {
-                PomodoroButton(action: { isShowSettings = true },
+                PomodoroButton(action: { isShowSettings.toggle() },
                                icon: "ellipsis",
-                               size: Size(80, 80),
-                               theme: pomodoro.theme)
+                               size: Size(80, 80))
                 PomodoroButton(action: {},
                                cornerRadius: 32,
                                fill: Color(pomodoro.theme.fillColorDark),
                                icon: "arrowtriangle.right.fill",
-                               size: Size(128, 96),
-                               theme: pomodoro.theme)
+                               size: Size(128, 96))
                 PomodoroButton(action: {},
                                icon: "forward.fill",
-                               size: Size(80, 80),
-                               theme: pomodoro.theme)
+                               size: Size(80, 80))
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(pomodoro.theme.mainColor)
-        .sheet(isPresented: $isShowSettings) { SettingsView(theme: pomodoro.theme) }
+        .background(theme.mainColor)
+        .sheet(isPresented: $isShowSettings) { SettingsView() }
     }
 }
 
 #Preview("Focus") {
     PomodoroView(pomodoro: .constant(Pomodoro(mode: .focus)))
+        .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
     PomodoroView(pomodoro: .constant(Pomodoro(mode: .shortBreak)))
+        .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
     PomodoroView(pomodoro: .constant(Pomodoro(mode: .longBreak)))
+        .environmentObject(PomodoroTheme(mode: .longBreak))
 }

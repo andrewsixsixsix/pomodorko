@@ -10,10 +10,11 @@ import SwiftUI
 struct CounterSetting: View {
     let text: String
     let value: Int
-    let theme: Theme
 
     let increment: () -> Void
     let decrement: () -> Void
+
+    @EnvironmentObject var theme: PomodoroTheme
 
     var body: some View {
         HStack {
@@ -51,25 +52,16 @@ struct CounterSetting: View {
 }
 
 #Preview("Focus") {
-    CounterSetting(text: "Focus length",
-                   value: 25,
-                   theme: Theme.forMode(.focus),
-                   increment: {},
-                   decrement: {})
+    CounterSetting(text: "Focus length", value: 25, increment: {}, decrement: {})
+        .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
-    CounterSetting(text: "Focus length",
-                   value: 25,
-                   theme: Theme.forMode(.shortBreak),
-                   increment: {},
-                   decrement: {})
+    CounterSetting(text: "Focus length", value: 25, increment: {}, decrement: {})
+        .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
-    CounterSetting(text: "Focus length",
-                   value: 25,
-                   theme: Theme.forMode(.longBreak),
-                   increment: {},
-                   decrement: {})
+    CounterSetting(text: "Focus length", value: 25, increment: {}, decrement: {})
+        .environmentObject(PomodoroTheme(mode: .longBreak))
 }

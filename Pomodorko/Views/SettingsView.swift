@@ -15,7 +15,7 @@ struct SettingsView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    let theme: Theme
+    @EnvironmentObject var theme: PomodoroTheme
 
     var body: some View {
         VStack(spacing: 28) {
@@ -38,22 +38,18 @@ struct SettingsView: View {
             .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
             CounterSetting(text: "Focus length",
                            value: 25,
-                           theme: theme,
                            increment: {},
                            decrement: {})
             CounterSetting(text: "Pomodoros untill long break",
                            value: 25,
-                           theme: theme,
                            increment: {},
                            decrement: {})
             CounterSetting(text: "Short break length",
                            value: 25,
-                           theme: theme,
                            increment: {},
                            decrement: {})
             CounterSetting(text: "Long break length",
                            value: 25,
-                           theme: theme,
                            increment: {},
                            decrement: {})
             Toggle(isOn: $isAutoResume) {
@@ -78,13 +74,16 @@ struct SettingsView: View {
 }
 
 #Preview("Focus") {
-    SettingsView(theme: Theme.forMode(.focus))
+    SettingsView()
+        .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
-    SettingsView(theme: Theme.forMode(.shortBreak))
+    SettingsView()
+        .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
-    SettingsView(theme: Theme.forMode(.longBreak))
+    SettingsView()
+        .environmentObject(PomodoroTheme(mode: .longBreak))
 }

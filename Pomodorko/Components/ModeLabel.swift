@@ -10,13 +10,7 @@ import SwiftUI
 struct ModeLabel: View {
     let mode: Mode
 
-    private var color: Color {
-        Theme.forMode(mode).accentColor
-    }
-
-    private var fill: Color {
-        Theme.forMode(mode).fillColor
-    }
+    @EnvironmentObject var theme: PomodoroTheme
 
     private var icon: String {
         switch mode {
@@ -35,14 +29,14 @@ struct ModeLabel: View {
         let rectangle = RoundedRectangle(cornerRadius: 20)
         return rectangle
             .stroke(lineWidth: 1)
-            .background(rectangle.fill(fill))
+            .background(rectangle.fill(theme.fillColor))
     }
 
     var body: some View {
         Label(name, systemImage: icon)
             .padding(8)
             .overlay { overlay }
-            .foregroundStyle(color)
+            .foregroundStyle(theme.accentColor)
             .accessibilityLabel("Pomodoro mode")
             .accessibilityValue(name)
     }
@@ -50,12 +44,15 @@ struct ModeLabel: View {
 
 #Preview("Focus") {
     ModeLabel(mode: .focus)
+        .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
     ModeLabel(mode: .shortBreak)
+        .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
     ModeLabel(mode: .longBreak)
+        .environmentObject(PomodoroTheme(mode: .longBreak))
 }

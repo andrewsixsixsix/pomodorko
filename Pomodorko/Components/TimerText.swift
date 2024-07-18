@@ -8,26 +8,30 @@
 import SwiftUI
 
 struct TimerText: View {
-    let color: Color
     let value: String
     let weight: Font.Weight
+
+    @EnvironmentObject var theme: PomodoroTheme
 
     var body: some View {
         Text(value)
             .font(.system(size: 180, weight: weight))
-            .foregroundStyle(color)
+            .foregroundStyle(theme.accentColor)
             .frame(height: 140)
     }
 }
 
 #Preview("Focus") {
-    TimerText(color: Theme.forMode(.focus).accentColor, value: "25", weight: .light)
+    TimerText(value: "25", weight: .light)
+        .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
-    TimerText(color: Theme.forMode(.shortBreak).accentColor, value: "25", weight: .light)
+    TimerText(value: "25", weight: .light)
+        .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
-    TimerText(color: Theme.forMode(.longBreak).accentColor, value: "25", weight: .light)
+    TimerText(value: "25", weight: .light)
+        .environmentObject(PomodoroTheme(mode: .longBreak))
 }
