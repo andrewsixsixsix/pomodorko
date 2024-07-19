@@ -24,6 +24,7 @@
 		A1B008FB2C4688920082433F /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B008FA2C4688920082433F /* Size.swift */; };
 		A1D154582C457C0E00D69E09 /* ModeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D154572C457C0E00D69E09 /* ModeLabel.swift */; };
 		A1DA5C752C483CBA00505B36 /* CounterSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DA5C742C483CBA00505B36 /* CounterSetting.swift */; };
+		A1FE9CAD2C4A681100B3A693 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FE9CAC2C4A681100B3A693 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		A1B008FA2C4688920082433F /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		A1D154572C457C0E00D69E09 /* ModeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeLabel.swift; sourceTree = "<group>"; };
 		A1DA5C742C483CBA00505B36 /* CounterSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterSetting.swift; sourceTree = "<group>"; };
+		A1FE9CAC2C4A681100B3A693 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 		A1656AC32C442079007C76E8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A1FE9CAC2C4A681100B3A693 /* Constants.swift */,
 				A1656AC82C442401007C76E8 /* Mode.swift */,
 				A1656ACA2C444CC4007C76E8 /* Pomodoro.swift */,
 				A1656AC62C442174007C76E8 /* PomodoroTheme.swift */,
@@ -320,6 +323,7 @@
 				A1DA5C752C483CBA00505B36 /* CounterSetting.swift in Sources */,
 				A1D154582C457C0E00D69E09 /* ModeLabel.swift in Sources */,
 				A16E242B2C49701000C59A7E /* Settings.swift in Sources */,
+				A1FE9CAD2C4A681100B3A693 /* Constants.swift in Sources */,
 				A18F5B352C46D81A00B23E04 /* SettingsView.swift in Sources */,
 				A16ABC672C46B8F1004F0FB8 /* TimerText.swift in Sources */,
 				A1656ACB2C444CC4007C76E8 /* Pomodoro.swift in Sources */,

@@ -8,69 +8,80 @@
 import Foundation
 
 @Observable
-class Settings: ObservableObject {
-    private let FOCUS_DURATION_STEP = 5
-    private let SHORT_BREAK_DURATION_STEP = 5
-    private let LONG_BREAK_DURATION_STEP = 5
-    private let POMODOROS_UNTIL_LONG_BREAK_STEP = 1
-
-    var isAutoResume: Bool
-    var isDarkMode: Bool
-    var isNotifications: Bool
-    var isSound: Bool
+class Settings: ObservableObject, Codable {
+    var isAutoResume: Bool = false
+    var isDarkMode: Bool = false
+    var isNotifications: Bool = false
+    var isSound: Bool = false
 
     // duration in minutes
-    var focusDuration: Int
-    var longBreakDuration: Int
-    var shortBreakDuration: Int
-    var pomodorosUntilLongBreak: Int
+    private(set) var focusDuration: Int = 25
+    private(set) var longBreakDuration: Int = 30
+    private(set) var shortBreakDuration: Int = 5
+    private(set) var pomodorosUntilLongBreak: Int = 4
 
-    // settings are set to user defined or default
     init() {
-        isAutoResume = false
-        isDarkMode = false
-        isNotifications = false
-        isSound = false
+        if let data = UserDefaults.standard.data(forKey: Constants.SETTINGS) {
+            do {
+                let settings = try JSONDecoder().decode(Settings.self, from: data)
+    
+                isAutoResume = settings.isAutoResume
+                isDarkMode = settings.isDarkMode
+                isNotifications = settings.isNotifications
+                isSound = settings.isSound
 
-        focusDuration = 25
-        longBreakDuration = 30
-        shortBreakDuration = 5
-        pomodorosUntilLongBreak = 4
+                focusDuration = settings.focusDuration
+                longBreakDuration = settings.longBreakDuration
+                shortBreakDuration = settings.shortBreakDuration
+                pomodorosUntilLongBreak = settings.pomodorosUntilLongBreak
+            } catch {
+                return
+            }
+        }
+    }
+
+    func save() {
+        do {
+            let data = try JSONEncoder().encode(self)
+            UserDefaults.standard.set(data, forKey: Constants.SETTINGS)
+        } catch {
+            return
+        }
     }
 
     func incrementFocusDuration() {
-        focusDuration += FOCUS_DURATION_STEP
+        focusDuration += Constants.FOCUS_DURATION_STEP
     }
 
     func decrementFocusDuration() {
-        if focusDuration == FOCUS_DURATION_STEP { return }
-        focusDuration -= FOCUS_DURATION_STEP
+        if focusDuration == Constants.FOCUS_DURATION_STEP { return }
+        focusDuration -= Constants.FOCUS_DURATION_STEP
     }
 
     func incrementLongBreakDuration() {
-        longBreakDuration += LONG_BREAK_DURATION_STEP
+        longBreakDuration += Constants.LONG_BREAK_DURATION_STEP
     }
 
     func decrementLongBreakDuration() {
-        if longBreakDuration == LONG_BREAK_DURATION_STEP { return }
-        longBreakDuration -= LONG_BREAK_DURATION_STEP
+        if longBreakDuration == Constants.LONG_BREAK_DURATION_STEP { return }
+        longBreakDuration -= Constants.LONG_BREAK_DURATION_STEP
     }
 
     func incrementShortBreakDuration() {
-        shortBreakDuration += SHORT_BREAK_DURATION_STEP
+        shortBreakDuration += Constants.SHORT_BREAK_DURATION_STEP
     }
 
     func decrementShortBreakDuration() {
-        if shortBreakDuration == SHORT_BREAK_DURATION_STEP { return }
-        shortBreakDuration -= SHORT_BREAK_DURATION_STEP
+        if shortBreakDuration == Constants.SHORT_BREAK_DURATION_STEP { return }
+        shortBreakDuration -= Constants.SHORT_BREAK_DURATION_STEP
     }
 
     func incrementPomodorosUntilLongDuration() {
-        pomodorosUntilLongBreak += POMODOROS_UNTIL_LONG_BREAK_STEP
+        pomodorosUntilLongBreak += Constants.POMODOROS_UNTIL_LONG_BREAK_STEP
     }
 
     func decrementPomodorosUntilLongBreak() {
-        if pomodorosUntilLongBreak == POMODOROS_UNTIL_LONG_BREAK_STEP { return }
-        pomodorosUntilLongBreak -= POMODOROS_UNTIL_LONG_BREAK_STEP
+        if pomodorosUntilLongBreak == Constants.POMODOROS_UNTIL_LONG_BREAK_STEP { return }
+        pomodorosUntilLongBreak -= Constants.POMODOROS_UNTIL_LONG_BREAK_STEP
     }
 }

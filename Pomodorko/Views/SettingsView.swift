@@ -23,6 +23,7 @@ struct SettingsView: View {
                 Spacer()
 
                 Button {
+                    settings.save()
                     dismiss()
                 } label: {
                     Image(systemName: "xmark")
