@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct Pomodoro {
-    var mode: Mode
-    var theme: PomodoroTheme
+@Observable
+class Pomodoro: ObservableObject {
+    var isActive: Bool
+    private(set) var mode: Mode
 
     init(mode: Mode) {
+        self.isActive = false
         self.mode = mode
-        self.theme = PomodoroTheme(mode: mode)
     }
 }

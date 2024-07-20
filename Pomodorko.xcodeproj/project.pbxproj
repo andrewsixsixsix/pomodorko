@@ -119,12 +119,12 @@
 		A1656A972C442058007C76E8 /* Pomodorko */ = {
 			isa = PBXGroup;
 			children = (
+				A1656A9C2C442059007C76E8 /* Assets.xcassets */,
 				A1CDE5032C4BBE8200B398A4 /* Info.plist */,
 				A1656A982C442058007C76E8 /* PomodorkoApp.swift */,
 				A1D154592C457E1F00D69E09 /* Components */,
 				A1656AC32C442079007C76E8 /* Models */,
 				A1656AC22C442073007C76E8 /* Views */,
-				A1656A9C2C442059007C76E8 /* Assets.xcassets */,
 				A1656A9E2C442059007C76E8 /* Preview Content */,
 			);
 			path = Pomodorko;

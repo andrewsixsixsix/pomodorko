@@ -7,11 +7,8 @@
 
 import SwiftUI
 
-// TODO: timer text width should be bold when pomodoro is in active state
-// TODO: replace "play" icon with "pause" in active state
-
 struct PomodoroView: View {
-    @Binding var pomodoro: Pomodoro
+    @ObservedObject var pomodoro: Pomodoro
     @EnvironmentObject var theme: PomodoroTheme
 
     @State private var isShowSettings = false
@@ -20,18 +17,18 @@ struct PomodoroView: View {
         VStack(spacing: 48) {
             ModeLabel(mode: pomodoro.mode)
             VStack {
-                TimerText(value: "25", weight: .light)
-                TimerText(value: "00", weight: .light)
+                TimerText(value: "25", weight: pomodoro.isActive ? .bold : .light)
+                TimerText(value: "00", weight: pomodoro.isActive ? .bold : .light)
             }
             HStack(spacing: 16) {
                 PomodoroButton(action: { isShowSettings.toggle() },
                                icon: "ellipsis",
                                size: Size(80, 80))
 
-                PomodoroButton(action: {},
+                PomodoroButton(action: { withAnimation(.none) { pomodoro.isActive.toggle() } },
                                cornerRadius: 32,
-                               fill: Color(pomodoro.theme.fillColorDark),
-                               icon: "arrowtriangle.right.fill",
+                               fill: Color(theme.fillColorDark),
+                               icon: pomodoro.isActive ? "pause.fill" : "arrowtriangle.right.fill",
                                size: Size(128, 96))
 
                 PomodoroButton(action: {},
@@ -46,16 +43,16 @@ struct PomodoroView: View {
 }
 
 #Preview("Focus") {
-    PomodoroView(pomodoro: .constant(Pomodoro(mode: .focus)))
+    PomodoroView(pomodoro: Pomodoro(mode: .focus))
         .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
-    PomodoroView(pomodoro: .constant(Pomodoro(mode: .shortBreak)))
+    PomodoroView(pomodoro: Pomodoro(mode: .shortBreak))
         .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
-    PomodoroView(pomodoro: .constant(Pomodoro(mode: .longBreak)))
+    PomodoroView(pomodoro: Pomodoro(mode: .longBreak))
         .environmentObject(PomodoroTheme(mode: .longBreak))
 }
