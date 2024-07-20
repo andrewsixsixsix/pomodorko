@@ -10,7 +10,6 @@ import Foundation
 @Observable
 class Settings: ObservableObject, Codable {
     var isAutoResume: Bool = false
-    var isDarkMode: Bool = false
     var isNotifications: Bool = false
     var isSound: Bool = false
 
@@ -26,7 +25,6 @@ class Settings: ObservableObject, Codable {
                 let settings = try JSONDecoder().decode(Settings.self, from: data)
     
                 isAutoResume = settings.isAutoResume
-                isDarkMode = settings.isDarkMode
                 isNotifications = settings.isNotifications
                 isSound = settings.isSound
 

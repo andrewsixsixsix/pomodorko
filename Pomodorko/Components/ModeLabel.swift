@@ -37,8 +37,6 @@ struct ModeLabel: View {
             .padding(8)
             .overlay { overlay }
             .foregroundStyle(theme.accentColor)
-            .accessibilityLabel("Pomodoro mode")
-            .accessibilityValue(name)
     }
 }
 

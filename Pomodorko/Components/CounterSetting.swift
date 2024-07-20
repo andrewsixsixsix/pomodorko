@@ -57,16 +57,16 @@ struct CounterSetting: View {
 }
 
 #Preview("Focus") {
-    CounterSetting(text: "Focus length", value: 25, increment: {}, decrement: {})
+    CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
         .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
-    CounterSetting(text: "Focus length", value: 25, increment: {}, decrement: {})
+    CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
         .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
-    CounterSetting(text: "Focus length", value: 25, increment: {}, decrement: {})
+    CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
         .environmentObject(PomodoroTheme(mode: .longBreak))
 }

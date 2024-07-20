@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// TODO: accesebility
 // TODO: timer text width should be bold when pomodoro is in active state
 // TODO: replace "play" icon with "pause" in active state
 
@@ -28,11 +27,13 @@ struct PomodoroView: View {
                 PomodoroButton(action: { isShowSettings.toggle() },
                                icon: "ellipsis",
                                size: Size(80, 80))
+
                 PomodoroButton(action: {},
                                cornerRadius: 32,
                                fill: Color(pomodoro.theme.fillColorDark),
                                icon: "arrowtriangle.right.fill",
                                size: Size(128, 96))
+
                 PomodoroButton(action: {},
                                icon: "forward.fill",
                                size: Size(80, 80))

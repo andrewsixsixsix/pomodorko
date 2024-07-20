@@ -32,23 +32,21 @@ struct SettingsView: View {
             }
             .padding(.bottom, 12)
 
-            Toggle(isOn: $settings.isDarkMode) {
-                Text("Dark mode")
-            }
-            .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
-
             CounterSetting(text: "Focus duration",
                            value: settings.focusDuration,
                            increment: { settings.incrementFocusDuration() },
                            decrement: { settings.decrementFocusDuration() })
+
             CounterSetting(text: "Pomodoros until long break",
                            value: settings.pomodorosUntilLongBreak,
                            increment: { settings.incrementPomodorosUntilLongDuration() },
                            decrement: { settings.decrementPomodorosUntilLongBreak() })
+
             CounterSetting(text: "Short break duration",
                            value: settings.shortBreakDuration,
                            increment: { settings.incrementShortBreakDuration() },
                            decrement: { settings.decrementShortBreakDuration() })
+
             CounterSetting(text: "Long break duration",
                            value: settings.longBreakDuration,
                            increment: { settings.incrementLongBreakDuration() },
