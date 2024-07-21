@@ -14,7 +14,11 @@ struct CounterSetting: View {
     let increment: () -> Void
     let decrement: () -> Void
 
-    @EnvironmentObject var theme: PomodoroTheme
+    @EnvironmentObject var pomodoro: Pomodoro
+
+    private var theme: Theme {
+        pomodoro.theme
+    }
 
     var body: some View {
         HStack {
@@ -58,15 +62,12 @@ struct CounterSetting: View {
 
 #Preview("Focus") {
     CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
-        .environmentObject(PomodoroTheme(mode: .focus))
 }
 
 #Preview("Short break") {
     CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
-        .environmentObject(PomodoroTheme(mode: .shortBreak))
 }
 
 #Preview("Long break") {
     CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
-        .environmentObject(PomodoroTheme(mode: .longBreak))
 }

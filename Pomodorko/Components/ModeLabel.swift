@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct ModeLabel: View {
-    let mode: Mode
+    @EnvironmentObject var pomodoro: Pomodoro
 
-    @EnvironmentObject var theme: PomodoroTheme
+    private var mode: Mode {
+        pomodoro.mode
+    }
+
+    private var theme: Theme {
+        pomodoro.theme
+    }
 
     private var icon: String {
         switch mode {
@@ -41,16 +47,16 @@ struct ModeLabel: View {
 }
 
 #Preview("Focus") {
-    ModeLabel(mode: .focus)
-        .environmentObject(PomodoroTheme(mode: .focus))
+    ModeLabel()
+        .environmentObject(Pomodoro(mode: .focus))
 }
 
 #Preview("Short break") {
-    ModeLabel(mode: .shortBreak)
-        .environmentObject(PomodoroTheme(mode: .shortBreak))
+    ModeLabel()
+        .environmentObject(Pomodoro(mode: .shortBreak))
 }
 
 #Preview("Long break") {
-    ModeLabel(mode: .longBreak)
-        .environmentObject(PomodoroTheme(mode: .longBreak))
+    ModeLabel()
+        .environmentObject(Pomodoro(mode: .longBreak))
 }

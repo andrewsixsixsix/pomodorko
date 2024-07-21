@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class Settings: ObservableObject, Codable {
+class Settings: Codable {
     var isAutoResume: Bool = false
     var isNotifications: Bool = false
     var isSound: Bool = false

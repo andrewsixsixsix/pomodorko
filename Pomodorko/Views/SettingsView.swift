@@ -10,8 +10,15 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
 
-    @EnvironmentObject var settings: Settings
-    @EnvironmentObject var theme: PomodoroTheme
+    @EnvironmentObject var pomodoro: Pomodoro
+
+    private var settings: Settings {
+        pomodoro.settings
+    }
+
+    private var theme: Theme {
+        pomodoro.theme
+    }
 
     var body: some View {
         VStack(spacing: 28) {
@@ -52,17 +59,17 @@ struct SettingsView: View {
                            increment: { settings.incrementLongBreakDuration() },
                            decrement: { settings.decrementLongBreakDuration() })
 
-            Toggle(isOn: $settings.isAutoResume) {
+            Toggle(isOn: $pomodoro.settings.isAutoResume) {
                 Text("Auto resume timer")
             }
             .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
 
-            Toggle(isOn: $settings.isSound) {
+            Toggle(isOn: $pomodoro.settings.isSound) {
                 Text("Sound")
             }
             .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
 
-            Toggle(isOn: $settings.isNotifications) {
+            Toggle(isOn: $pomodoro.settings.isNotifications) {
                 Text("Notifications")
             }
             .toggleStyle(SwitchToggleStyle(tint: theme.accentColor))
@@ -78,18 +85,15 @@ struct SettingsView: View {
 
 #Preview("Focus") {
     SettingsView()
-        .environmentObject(Settings())
-        .environmentObject(PomodoroTheme(mode: .focus))
+        .environmentObject(Pomodoro(mode: .focus))
 }
 
 #Preview("Short break") {
     SettingsView()
-        .environmentObject(Settings())
-        .environmentObject(PomodoroTheme(mode: .shortBreak))
+        .environmentObject(Pomodoro(mode: .shortBreak))
 }
 
 #Preview("Long break") {
     SettingsView()
-        .environmentObject(Settings())
-        .environmentObject(PomodoroTheme(mode: .longBreak))
+        .environmentObject(Pomodoro(mode: .longBreak))
 }

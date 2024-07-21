@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct PomodoroView: View {
-    @ObservedObject var pomodoro: Pomodoro
-    @EnvironmentObject var theme: PomodoroTheme
+    @EnvironmentObject var pomodoro: Pomodoro
 
     @State private var isShowSettings = false
 
+    var theme: Theme {
+        pomodoro.theme
+    }
+
     var body: some View {
         VStack(spacing: 48) {
-            ModeLabel(mode: pomodoro.mode)
+            ModeLabel()
             VStack {
                 TimerText(value: "25", weight: pomodoro.isActive ? .bold : .light)
                 TimerText(value: "00", weight: pomodoro.isActive ? .bold : .light)
@@ -31,7 +34,7 @@ struct PomodoroView: View {
                                icon: pomodoro.isActive ? "pause.fill" : "arrowtriangle.right.fill",
                                size: Size(128, 96))
 
-                PomodoroButton(action: {},
+                PomodoroButton(action: { pomodoro.skip() },
                                icon: "forward.fill",
                                size: Size(80, 80))
             }
@@ -43,16 +46,16 @@ struct PomodoroView: View {
 }
 
 #Preview("Focus") {
-    PomodoroView(pomodoro: Pomodoro(mode: .focus))
-        .environmentObject(PomodoroTheme(mode: .focus))
+    PomodoroView()
+        .environmentObject(Pomodoro(mode: .focus))
 }
 
 #Preview("Short break") {
-    PomodoroView(pomodoro: Pomodoro(mode: .shortBreak))
-        .environmentObject(PomodoroTheme(mode: .shortBreak))
+    PomodoroView()
+        .environmentObject(Pomodoro(mode: .shortBreak))
 }
 
 #Preview("Long break") {
-    PomodoroView(pomodoro: Pomodoro(mode: .longBreak))
-        .environmentObject(PomodoroTheme(mode: .longBreak))
+    PomodoroView()
+        .environmentObject(Pomodoro(mode: .longBreak))
 }

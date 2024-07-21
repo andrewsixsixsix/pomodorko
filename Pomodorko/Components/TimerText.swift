@@ -11,7 +11,11 @@ struct TimerText: View {
     let value: String
     let weight: Font.Weight
 
-    @EnvironmentObject var theme: PomodoroTheme
+    @EnvironmentObject var pomodoro: Pomodoro
+
+    private var theme: Theme {
+        pomodoro.theme
+    }
 
     var body: some View {
         Text(value)
@@ -23,15 +27,15 @@ struct TimerText: View {
 
 #Preview("Focus") {
     TimerText(value: "25", weight: .light)
-        .environmentObject(PomodoroTheme(mode: .focus))
+        .environmentObject(Pomodoro(mode: .focus))
 }
 
 #Preview("Short break") {
     TimerText(value: "25", weight: .light)
-        .environmentObject(PomodoroTheme(mode: .shortBreak))
+        .environmentObject(Pomodoro(mode: .shortBreak))
 }
 
 #Preview("Long break") {
     TimerText(value: "25", weight: .light)
-        .environmentObject(PomodoroTheme(mode: .longBreak))
+        .environmentObject(Pomodoro(mode: .longBreak))
 }
