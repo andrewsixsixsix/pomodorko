@@ -19,12 +19,12 @@ class Pomodoro: ObservableObject {
             theme = Theme.forMode(newValue)
 
             switch(newValue) {
+            case .focus:
+                break
             case .shortBreak:
                 pomodorosCounter += 1
             case .longBreak:
                 pomodorosCounter = 0
-            default:
-                break
             }
         }
     }
@@ -41,7 +41,7 @@ class Pomodoro: ObservableObject {
         mode = switch(mode) {
         case .focus:
             pomodorosCounter + 1 >= settings.pomodorosUntilLongBreak ? .longBreak : .shortBreak
-        default:
+        case .shortBreak, .longBreak:
             .focus
         }
     }

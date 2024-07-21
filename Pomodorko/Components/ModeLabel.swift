@@ -22,7 +22,7 @@ struct ModeLabel: View {
         switch mode {
         case .focus:
             "brain"
-        default:
+        case .shortBreak, .longBreak:
             "cup.and.saucer"
         }
     }
