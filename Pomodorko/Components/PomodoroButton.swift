@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PomodoroButton: View {
-    let action: () -> Void
     var cornerRadius: CGFloat = 24
     var fill: Color?
     let icon: String
     let size: Size
+    let action: () -> Void
 
     @EnvironmentObject var pomodoro: Pomodoro
 
@@ -36,25 +36,25 @@ struct PomodoroButton: View {
 }
 
 #Preview("Focus") {
-    PomodoroButton(action: {},
-                   fill: Theme.forMode(.focus).fillColorDark,
+    PomodoroButton(fill: Theme.forMode(.focus).fillColorDark,
                    icon: "arrowtriangle.right.fill",
-                   size: Size(80, 80))
+                   size: Size(80, 80),
+                   action: {})
     .environmentObject(Pomodoro(mode: .focus))
 }
 
 #Preview("Short break") {
-    PomodoroButton(action: {},
-                   fill: Theme.forMode(.shortBreak).fillColorDark,
+    PomodoroButton(fill: Theme.forMode(.shortBreak).fillColorDark,
                    icon: "arrowtriangle.right.fill",
-                   size: Size(80, 80))
+                   size: Size(80, 80),
+                   action: {})
     .environmentObject(Pomodoro(mode: .shortBreak))
 }
 
 #Preview("Long breal") {
-    PomodoroButton(action: {},
-                   fill: Theme.forMode(.shortBreak).fillColorDark,
+    PomodoroButton(fill: Theme.forMode(.shortBreak).fillColorDark,
                    icon: "arrowtriangle.right.fill",
-                   size: Size(80, 80))
+                   size: Size(80, 80),
+                   action: {})
     .environmentObject(Pomodoro(mode: .longBreak))
 }

@@ -19,24 +19,22 @@ struct PomodoroView: View {
     var body: some View {
         VStack(spacing: 48) {
             ModeLabel()
-            VStack {
-                TimerText(value: "25", weight: pomodoro.isActive ? .bold : .light)
-                TimerText(value: "00", weight: pomodoro.isActive ? .bold : .light)
-            }
-            HStack(spacing: 16) {
-                PomodoroButton(action: { isShowSettings.toggle() },
-                               icon: "ellipsis",
-                               size: Size(80, 80))
 
-                PomodoroButton(action: { withAnimation(.none) { pomodoro.isActive.toggle() } },
-                               cornerRadius: 32,
+            TimerText()
+
+            HStack(spacing: 16) {
+                PomodoroButton(icon: "ellipsis", size: Size(80, 80)) { isShowSettings.toggle() }
+
+                PomodoroButton(cornerRadius: 32,
                                fill: Color(theme.fillColorDark),
                                icon: pomodoro.isActive ? "pause.fill" : "arrowtriangle.right.fill",
-                               size: Size(128, 96))
+                               size: Size(128, 96)) {
+                    withAnimation(.none) {
+                        pomodoro.isActive ? pomodoro.stop() : pomodoro.start()
+                    }
+                }
 
-                PomodoroButton(action: { pomodoro.skip() },
-                               icon: "forward.fill",
-                               size: Size(80, 80))
+                PomodoroButton(icon: "forward.fill", size: Size(80, 80)) { pomodoro.skip() }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

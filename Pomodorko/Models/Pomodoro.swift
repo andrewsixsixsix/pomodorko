@@ -9,9 +9,12 @@ import Foundation
 
 @Observable
 class Pomodoro: ObservableObject {
-    var isActive: Bool = false
-    var pomodorosCounter: Int = 0
-    var settings: Settings = Settings()
+    var isActive = false
+    var pomodorosCounter = 0
+    var timer: Timer = .init()
+
+    var settings: Settings
+    var timeLeft: Int
 
     private(set) var theme: Theme
     private(set) var mode: Mode {
@@ -30,6 +33,10 @@ class Pomodoro: ObservableObject {
     }
 
     init(mode: Mode) {
+        let settings = Settings()
+        self.settings = settings
+        self.timeLeft = settings.focusDuration * 60
+
         self.mode = mode
         self.theme = Theme.forMode(mode)
     }
