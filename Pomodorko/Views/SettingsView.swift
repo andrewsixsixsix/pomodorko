@@ -30,7 +30,7 @@ struct SettingsView: View {
                 Spacer()
 
                 Button {
-                    settings.save()
+                    pomodoro.saveSettings()
                     dismiss()
                 } label: {
                     Image(systemName: "xmark")

@@ -19,6 +19,18 @@ class Settings: Codable {
     private(set) var shortBreakDuration: Int = 5
     private(set) var pomodorosUntilLongBreak: Int = 4
 
+    var focusDurationSeconds: Int {
+        focusDuration * 60
+    }
+
+    var longBreakDurationSeconds: Int {
+        longBreakDuration * 60
+    }
+
+    var shortBreakDurationSeconds: Int {
+        shortBreakDuration * 60
+    }
+
     init() {
         if let data = UserDefaults.standard.data(forKey: Constants.SETTINGS) {
             do {
