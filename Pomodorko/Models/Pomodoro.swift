@@ -21,7 +21,7 @@ class Pomodoro: ObservableObject {
         willSet {
             theme = Theme.forMode(newValue)
 
-            switch(newValue) {
+            switch newValue {
             case .focus:
                 timeLeft = settings.focusDurationSeconds
             case .shortBreak:
@@ -47,10 +47,10 @@ class Pomodoro: ObservableObject {
     func start() {
         isActive = true
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            if (!self.isActive) {
+            if !self.isActive {
                 timer.invalidate()
                 return
-            } else if (self.timeLeft == 0) {
+            } else if self.timeLeft == 0 {
                 timer.invalidate()
                 self.skip()
                 return
@@ -73,7 +73,7 @@ class Pomodoro: ObservableObject {
     /// Focus mode is skipped to short or long break. Both short and long breaks are always skipped to focus mode
     func skip() {
         isActive = false
-        mode = switch(mode) {
+        mode = switch mode {
         case .focus:
             pomodorosCounter + 1 >= settings.pomodorosUntilLongBreak ? .longBreak : .shortBreak
         case .shortBreak, .longBreak:
@@ -81,17 +81,32 @@ class Pomodoro: ObservableObject {
         }
     }
 
-    /// Saves settings and resets current pomodoro state if settings were changed
+    /// Saves settings and resets current pomodoro session if its duration was changed
     func saveSettings() {
-        // TODO: check if settings were changed (get saved settings and compare to current?)
-        reset()
+        guard let storedSettings = settings.getStored() else {
+            resetSession()
+            settings.save()
+            return
+        }
+
+        let isSessionDurationChanged = switch mode {
+        case .focus:
+            settings.focusDuration != storedSettings.focusDuration
+        case .shortBreak:
+            settings.shortBreakDuration != storedSettings.shortBreakDuration
+        case .longBreak:
+            settings.longBreakDuration != storedSettings.longBreakDuration
+        }
+
+        if isSessionDurationChanged {
+            resetSession()
+        }
+
         settings.save()
     }
 
-    private func reset() {
+    private func resetSession() {
         isActive = false
-        mode = .focus
-        pomodorosCounter = 0
-        timeLeft = settings.focusDurationSeconds
+        mode = mode
     }
 }

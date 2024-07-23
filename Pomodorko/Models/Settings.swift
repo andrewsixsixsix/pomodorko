@@ -59,6 +59,18 @@ class Settings: Codable {
         }
     }
 
+    func getStored() -> Settings? {
+        if let data = UserDefaults.standard.data(forKey: Constants.SETTINGS) {
+            do {
+                return try JSONDecoder().decode(Settings.self, from: data)
+            } catch {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+
     func incrementFocusDuration() {
         focusDuration += Constants.FOCUS_DURATION_STEP
     }
