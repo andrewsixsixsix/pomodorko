@@ -11,10 +11,12 @@ import Foundation
 class Pomodoro: ObservableObject {
     private(set) var isActive = false
     private(set) var pomodorosCounter = 0
+    private(set) var startDate = Date()
     private(set) var timer: Timer = .init()
 
     var settings: Settings
 
+    private(set) var sessionDuration: Int
     private(set) var timeLeft: Int
     private(set) var theme: Theme
     private(set) var mode: Mode {
@@ -23,20 +25,28 @@ class Pomodoro: ObservableObject {
 
             switch newValue {
             case .focus:
+                sessionDuration = settings.focusDurationSeconds
                 timeLeft = settings.focusDurationSeconds
             case .shortBreak:
                 pomodorosCounter += 1
+                sessionDuration = settings.shortBreakDurationSeconds
                 timeLeft = settings.shortBreakDurationSeconds
             case .longBreak:
                 pomodorosCounter = 0
+                sessionDuration = settings.longBreakDurationSeconds
                 timeLeft = settings.longBreakDurationSeconds
             }
         }
     }
 
+    private var isSessionInProgress: Bool {
+        timeLeft < sessionDuration
+    }
+
     init(mode: Mode) {
         let settings = Settings()
         self.settings = settings
+        self.sessionDuration = settings.focusDurationSeconds
         self.timeLeft = settings.focusDurationSeconds
 
         self.mode = mode
@@ -46,17 +56,29 @@ class Pomodoro: ObservableObject {
     /// Starts pomodoro session
     func start() {
         isActive = true
+
+        if !isSessionInProgress {
+            startDate = Date()
+        }
+
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            if !self.isActive {
-                timer.invalidate()
-                return
-            } else if self.timeLeft == 0 {
-                timer.invalidate()
-                self.skip()
-                return
-            } else {
-                self.timeLeft -= 1
-            }
+            self.update()
+        }
+    }
+
+    private func update() {
+        if !self.isActive {
+            timer.invalidate()
+            return
+        }
+
+        // TODO: take into account pauses made during session
+        let elapsedTime = Int(Date().timeIntervalSince1970 - startDate.timeIntervalSince1970)
+        timeLeft = sessionDuration - elapsedTime
+
+        if timeLeft == 0 {
+            timer.invalidate()
+            self.skip()
         }
     }
 
