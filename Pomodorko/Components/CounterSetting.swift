@@ -62,12 +62,15 @@ struct CounterSetting: View {
 
 #Preview("Focus") {
     CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
+        .environmentObject(Pomodoro(mode: .focus))
 }
 
 #Preview("Short break") {
     CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
+        .environmentObject(Pomodoro(mode: .shortBreak))
 }
 
 #Preview("Long break") {
     CounterSetting(text: "Focus duration", value: 25, increment: {}, decrement: {})
+        .environmentObject(Pomodoro(mode: .longBreak))
 }

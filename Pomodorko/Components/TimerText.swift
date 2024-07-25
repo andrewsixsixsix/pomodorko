@@ -14,20 +14,20 @@ struct TimerText: View {
         pomodoro.theme
     }
 
-    private var weight: Font.Weight {
-        pomodoro.isActive ? .bold : .light
+    private var font: String {
+        pomodoro.isActive ? "AzeretMono-Bold" : "AzeretMono-Light"
     }
 
     var body: some View {
         VStack {
             Text(String(format: "%02d", pomodoro.timeLeft / 60))
-                .font(.system(size: 180, weight: weight))
+                .font(Font.custom(font, size: 180))
                 .foregroundStyle(theme.accentColor)
                 .frame(height: 140)
                 .frame(maxWidth: .infinity)
 
             Text(String(format: "%02d", pomodoro.timeLeft % 60))
-                .font(.system(size: 180, weight: weight))
+                .font(Font.custom(font, size: 180))
                 .foregroundStyle(theme.accentColor)
                 .frame(height: 140)
                 .frame(maxWidth: .infinity)

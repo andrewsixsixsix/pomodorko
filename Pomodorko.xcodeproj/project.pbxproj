@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1192BC62C523CE300419173 /* AzeretMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1192BC52C523CE300419173 /* AzeretMono-Bold.ttf */; };
+		A1192BC82C523CEE00419173 /* AzeretMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1192BC72C523CEE00419173 /* AzeretMono-Light.ttf */; };
 		A1656A992C442058007C76E8 /* PomodorkoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1656A982C442058007C76E8 /* PomodorkoApp.swift */; };
 		A1656A9D2C442059007C76E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1656A9C2C442059007C76E8 /* Assets.xcassets */; };
 		A1656AA02C442059007C76E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1656A9F2C442059007C76E8 /* Preview Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1192BC52C523CE300419173 /* AzeretMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AzeretMono-Bold.ttf"; sourceTree = "<group>"; };
+		A1192BC72C523CEE00419173 /* AzeretMono-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AzeretMono-Light.ttf"; sourceTree = "<group>"; };
 		A14DC5FC2C444EF700407631 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A1656A952C442058007C76E8 /* Pomodorko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodorko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1656A982C442058007C76E8 /* PomodorkoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodorkoApp.swift; sourceTree = "<group>"; };
@@ -95,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1192BBE2C52336600419173 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A1192BC52C523CE300419173 /* AzeretMono-Bold.ttf */,
+				A1192BC72C523CEE00419173 /* AzeretMono-Light.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		A1656A8C2C442058007C76E8 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +136,7 @@
 				A1CDE5032C4BBE8200B398A4 /* Info.plist */,
 				A1656A982C442058007C76E8 /* PomodorkoApp.swift */,
 				A1D154592C457E1F00D69E09 /* Components */,
+				A1192BBE2C52336600419173 /* Fonts */,
 				A1656AC32C442079007C76E8 /* Models */,
 				A1656AC22C442073007C76E8 /* Views */,
 				A1656A9E2C442059007C76E8 /* Preview Content */,
@@ -293,7 +307,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1656AA02C442059007C76E8 /* Preview Assets.xcassets in Resources */,
+				A1192BC62C523CE300419173 /* AzeretMono-Bold.ttf in Resources */,
 				A1656A9D2C442059007C76E8 /* Assets.xcassets in Resources */,
+				A1192BC82C523CEE00419173 /* AzeretMono-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
