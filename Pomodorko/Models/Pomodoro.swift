@@ -9,18 +9,21 @@ import Foundation
 
 @Observable
 class Pomodoro: ObservableObject {
+    var settings: Settings
+
+    private var pause: Pause?
+
     private(set) var isActive = false
     private(set) var pomodorosCounter = 0
     private(set) var startDate = Date()
     private(set) var timer: Timer = .init()
-
-    var settings: Settings
 
     private(set) var sessionDuration: Int
     private(set) var timeLeft: Int
     private(set) var theme: Theme
     private(set) var mode: Mode {
         willSet {
+            pause = nil
             theme = Theme.forMode(newValue)
 
             switch newValue {
@@ -55,11 +58,16 @@ class Pomodoro: ObservableObject {
 
     /// Starts pomodoro session
     func start() {
-        isActive = true
-
         if !isSessionInProgress {
             startDate = Date()
         }
+
+        if let pauseDuration = pause?.duration {
+            startDate.addTimeInterval(pauseDuration)
+            pause = nil
+        }
+
+        isActive = true
 
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             self.update()
@@ -72,7 +80,6 @@ class Pomodoro: ObservableObject {
             return
         }
 
-        // TODO: take into account pauses made during session
         let elapsedTime = Int(Date().timeIntervalSince1970 - startDate.timeIntervalSince1970)
         timeLeft = sessionDuration - elapsedTime
 
@@ -88,6 +95,7 @@ class Pomodoro: ObservableObject {
     /// `timer.invalidate()` must be called from the thread which started it, so we do not call this method here
     func stop() {
         isActive = false
+        pause = .init()
     }
 
     /// Skips current pomodoro session
@@ -130,5 +138,19 @@ class Pomodoro: ObservableObject {
     private func resetSession() {
         isActive = false
         mode = mode
+    }
+}
+
+extension Pomodoro {
+    struct Pause {
+        var start: TimeInterval
+
+        var duration: TimeInterval {
+            Date().timeIntervalSince1970 - start
+        }
+
+        init() {
+            start = Date().timeIntervalSince1970
+        }
     }
 }
