@@ -74,6 +74,7 @@ class Pomodoro: ObservableObject {
         }
     }
 
+    // TODO: not called when app in background
     private func update() {
         if !self.isActive {
             timer.invalidate()
@@ -103,11 +104,26 @@ class Pomodoro: ObservableObject {
     /// Focus mode is skipped to short or long break. Both short and long breaks are always skipped to focus mode
     func skip() {
         isActive = false
-        mode = switch mode {
+
+        let nextMode: Mode
+        let title: String
+        let body: String
+
+        switch mode {
         case .focus:
-            pomodorosCounter + 1 >= settings.pomodorosUntilLongBreak ? .longBreak : .shortBreak
+            nextMode = pomodorosCounter + 1 >= settings.pomodorosUntilLongBreak ? .longBreak : .shortBreak
+            title = "Focus session is over"
+            body = nextMode.name.appending(" is next")
         case .shortBreak, .longBreak:
-            .focus
+            title = mode.name.appending(" is over")
+            body = "Focus session is next"
+            nextMode = .focus
+        }
+
+        mode = nextMode
+
+        if settings.isNotifications {
+            NotificationManager.notify(title: title, body: body, withSound: settings.isSound)
         }
     }
 

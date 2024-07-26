@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A1192BC62C523CE300419173 /* AzeretMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1192BC52C523CE300419173 /* AzeretMono-Bold.ttf */; };
 		A1192BC82C523CEE00419173 /* AzeretMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1192BC72C523CEE00419173 /* AzeretMono-Light.ttf */; };
+		A164A78C2C52BDDF003E4414 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A164A78B2C52BDDF003E4414 /* NotificationManager.swift */; };
 		A1656A992C442058007C76E8 /* PomodorkoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1656A982C442058007C76E8 /* PomodorkoApp.swift */; };
 		A1656A9D2C442059007C76E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1656A9C2C442059007C76E8 /* Assets.xcassets */; };
 		A1656AA02C442059007C76E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1656A9F2C442059007C76E8 /* Preview Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		A1192BC52C523CE300419173 /* AzeretMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AzeretMono-Bold.ttf"; sourceTree = "<group>"; };
 		A1192BC72C523CEE00419173 /* AzeretMono-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AzeretMono-Light.ttf"; sourceTree = "<group>"; };
 		A14DC5FC2C444EF700407631 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A164A78B2C52BDDF003E4414 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		A1656A952C442058007C76E8 /* Pomodorko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodorko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1656A982C442058007C76E8 /* PomodorkoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodorkoApp.swift; sourceTree = "<group>"; };
 		A1656A9C2C442059007C76E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				A1FE9CAC2C4A681100B3A693 /* Constants.swift */,
 				A1656AC82C442401007C76E8 /* Mode.swift */,
+				A164A78B2C52BDDF003E4414 /* NotificationManager.swift */,
 				A1656ACA2C444CC4007C76E8 /* Pomodoro.swift */,
 				A16E242A2C49701000C59A7E /* Settings.swift */,
 				A1B008FA2C4688920082433F /* Size.swift */,
@@ -345,6 +348,7 @@
 				A18F5B352C46D81A00B23E04 /* SettingsView.swift in Sources */,
 				A16ABC672C46B8F1004F0FB8 /* TimerText.swift in Sources */,
 				A1656ACB2C444CC4007C76E8 /* Pomodoro.swift in Sources */,
+				A164A78C2C52BDDF003E4414 /* NotificationManager.swift in Sources */,
 				A1656AC92C442401007C76E8 /* Mode.swift in Sources */,
 				A1656A992C442058007C76E8 /* PomodorkoApp.swift in Sources */,
 			);

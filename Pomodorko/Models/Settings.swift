@@ -10,7 +10,13 @@ import Foundation
 @Observable
 class Settings: Codable {
     var isAutoResume: Bool = false
-    var isNotifications: Bool = false
+    var isNotifications: Bool = false {
+        willSet {
+            if newValue {
+                NotificationManager.authorize()
+            }
+        }
+    }
     var isSound: Bool = false
 
     // duration in minutes
@@ -76,7 +82,9 @@ class Settings: Codable {
     }
 
     func decrementFocusDuration() {
-        if focusDuration == Constants.FOCUS_DURATION_STEP { return }
+        guard focusDuration == Constants.FOCUS_DURATION_STEP else {
+            return
+        }
         focusDuration -= Constants.FOCUS_DURATION_STEP
     }
 
@@ -85,7 +93,9 @@ class Settings: Codable {
     }
 
     func decrementLongBreakDuration() {
-        if longBreakDuration == Constants.LONG_BREAK_DURATION_STEP { return }
+        guard longBreakDuration == Constants.LONG_BREAK_DURATION_STEP else {
+            return
+        }
         longBreakDuration -= Constants.LONG_BREAK_DURATION_STEP
     }
 
@@ -94,7 +104,9 @@ class Settings: Codable {
     }
 
     func decrementShortBreakDuration() {
-        if shortBreakDuration == Constants.SHORT_BREAK_DURATION_STEP { return }
+        guard shortBreakDuration == Constants.SHORT_BREAK_DURATION_STEP else {
+            return
+        }
         shortBreakDuration -= Constants.SHORT_BREAK_DURATION_STEP
     }
 
@@ -103,7 +115,9 @@ class Settings: Codable {
     }
 
     func decrementPomodorosUntilLongBreak() {
-        if pomodorosUntilLongBreak == Constants.POMODOROS_UNTIL_LONG_BREAK_STEP { return }
+        guard pomodorosUntilLongBreak == Constants.POMODOROS_UNTIL_LONG_BREAK_STEP else {
+            return
+        }
         pomodorosUntilLongBreak -= Constants.POMODOROS_UNTIL_LONG_BREAK_STEP
     }
 }
