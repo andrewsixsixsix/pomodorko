@@ -113,8 +113,12 @@ class Pomodoro: ObservableObject {
     ///
     /// Focus mode is skipped to short or long break. Both short and long breaks are always skipped to focus mode
     func skip() {
-        isActive = false
         mode = nextMode
+        if settings.isAutoResume && isActive {
+            start()
+        } else {
+            isActive = false
+        }
     }
 
     func scheduleNotification() {
