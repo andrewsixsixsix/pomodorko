@@ -46,6 +46,15 @@ class Pomodoro: ObservableObject {
         timeLeft < sessionDuration
     }
 
+    private var nextMode: Mode {
+        switch mode {
+        case .focus:
+            pomodorosCounter + 1 >= settings.pomodorosUntilLongBreak ? .longBreak : .shortBreak
+        case .shortBreak, .longBreak:
+            .focus
+        }
+    }
+
     init(mode: Mode) {
         let settings = Settings()
         self.settings = settings
@@ -74,7 +83,6 @@ class Pomodoro: ObservableObject {
         }
     }
 
-    // TODO: not called when app in background
     private func update() {
         if !self.isActive {
             timer.invalidate()
@@ -84,9 +92,9 @@ class Pomodoro: ObservableObject {
         let elapsedTime = Int(Date().timeIntervalSince1970 - startDate.timeIntervalSince1970)
         timeLeft = sessionDuration - elapsedTime
 
-        if timeLeft == 0 {
+        if timeLeft <= 0 {
             timer.invalidate()
-            self.skip()
+            skip()
         }
     }
 
@@ -99,32 +107,34 @@ class Pomodoro: ObservableObject {
         pause = .init()
     }
 
+    // TODO: how to auto resume when app in background?
+
     /// Skips current pomodoro session
     ///
     /// Focus mode is skipped to short or long break. Both short and long breaks are always skipped to focus mode
     func skip() {
         isActive = false
+        mode = nextMode
+    }
 
-        let nextMode: Mode
+    func scheduleNotification() {
+        guard isActive && settings.isNotifications else {
+            return
+        }
+
         let title: String
         let body: String
 
         switch mode {
         case .focus:
-            nextMode = pomodorosCounter + 1 >= settings.pomodorosUntilLongBreak ? .longBreak : .shortBreak
             title = "Focus session is over"
             body = nextMode.name.appending(" is next")
         case .shortBreak, .longBreak:
             title = mode.name.appending(" is over")
             body = "Focus session is next"
-            nextMode = .focus
         }
 
-        mode = nextMode
-
-        if settings.isNotifications {
-            NotificationManager.notify(title: title, body: body, withSound: settings.isSound)
-        }
+        NotificationManager.notify(title: title, body: body, timeInterval: TimeInterval(timeLeft), withSound: settings.isSound)
     }
 
     /// Saves settings and resets current pomodoro session if its duration was changed
