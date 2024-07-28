@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A100A2FF2C56421C0058BFDE /* BGTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100A2FE2C56421C0058BFDE /* BGTaskManager.swift */; };
 		A1192BC62C523CE300419173 /* AzeretMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1192BC52C523CE300419173 /* AzeretMono-Bold.ttf */; };
 		A1192BC82C523CEE00419173 /* AzeretMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1192BC72C523CEE00419173 /* AzeretMono-Light.ttf */; };
 		A164A78C2C52BDDF003E4414 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A164A78B2C52BDDF003E4414 /* NotificationManager.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A100A2FE2C56421C0058BFDE /* BGTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGTaskManager.swift; sourceTree = "<group>"; };
 		A1192BC52C523CE300419173 /* AzeretMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AzeretMono-Bold.ttf"; sourceTree = "<group>"; };
 		A1192BC72C523CEE00419173 /* AzeretMono-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AzeretMono-Light.ttf"; sourceTree = "<group>"; };
 		A14DC5FC2C444EF700407631 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				A16E242A2C49701000C59A7E /* Settings.swift */,
 				A1B008FA2C4688920082433F /* Size.swift */,
 				A1656AC62C442174007C76E8 /* Theme.swift */,
+				A100A2FE2C56421C0058BFDE /* BGTaskManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				A1D154582C457C0E00D69E09 /* ModeLabel.swift in Sources */,
 				A16E242B2C49701000C59A7E /* Settings.swift in Sources */,
 				A1FE9CAD2C4A681100B3A693 /* Constants.swift in Sources */,
+				A100A2FF2C56421C0058BFDE /* BGTaskManager.swift in Sources */,
 				A18F5B352C46D81A00B23E04 /* SettingsView.swift in Sources */,
 				A16ABC672C46B8F1004F0FB8 /* TimerText.swift in Sources */,
 				A1656ACB2C444CC4007C76E8 /* Pomodoro.swift in Sources */,
@@ -516,6 +520,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Pomodorko/Preview Content\"";
+				DEVELOPMENT_TEAM = JZPFJ8Y6R9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pomodorko/Info.plist;
@@ -530,7 +535,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andy.Pomodorko;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewsixsixsix.pomodorko;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -552,6 +557,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Pomodorko/Preview Content\"";
+				DEVELOPMENT_TEAM = JZPFJ8Y6R9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pomodorko/Info.plist;
@@ -566,7 +572,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andy.Pomodorko;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewsixsixsix.pomodorko;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

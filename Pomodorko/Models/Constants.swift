@@ -15,5 +15,9 @@ final class Constants {
 
     static let SETTINGS = "settings"
 
+    static let BG_TASK_NEXT_SESSION = "com.andrewsixsixsix.pomodorko.next"
+
+    static let NOTIF_SESSION_END = "com.andrewsixsixsix.pomodorko.session"
+
     private init() {}
 }

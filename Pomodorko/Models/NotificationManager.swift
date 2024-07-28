@@ -28,8 +28,8 @@ class NotificationManager {
         })
     }
 
-    static func removeNotifications() {
-        center.removeAllPendingNotificationRequests()
+    static func removeNotifications(_ ids: [String]) {
+        center.removePendingNotificationRequests(withIdentifiers: ids)
     }
 
     private static func scheduleNotification(_ title: String, _ body: String, _ timeInterval: TimeInterval, _ withSound: Bool) {
@@ -40,7 +40,7 @@ class NotificationManager {
         content.sound = withSound ? .default : .none
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: Constants.NOTIF_SESSION_END, content: content, trigger: trigger)
 
         center.add(request) { _ in }
     }

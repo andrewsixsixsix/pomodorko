@@ -107,8 +107,6 @@ class Pomodoro: ObservableObject {
         pause = .init()
     }
 
-    // TODO: how to auto resume when app in background?
-
     /// Skips current pomodoro session
     ///
     /// Focus mode is skipped to short or long break. Both short and long breaks are always skipped to focus mode
@@ -119,6 +117,15 @@ class Pomodoro: ObservableObject {
         } else {
             isActive = false
         }
+    }
+
+    /// Creates a background task to start next pomodoro session
+    func scheduleNextSession() {
+        guard isActive && settings.isAutoResume else {
+            return
+        }
+
+        BGTaskManager.submit(Constants.BG_TASK_NEXT_SESSION, in: TimeInterval(timeLeft))
     }
 
     func scheduleNotification() {

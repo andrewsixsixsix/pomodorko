@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BackgroundTasks
 
 @main
 struct PomodorkoApp: App {
@@ -17,12 +18,15 @@ struct PomodorkoApp: App {
         WindowGroup {
             PomodoroView()
         }
+        .backgroundTask(.appRefresh(Constants.BG_TASK_NEXT_SESSION)) { await pomodoro.skip() }
         .environmentObject(pomodoro)
-        .onChange(of: scenePhase) { oldPhase, newPhase in
+        .onChange(of: scenePhase) { _, newPhase in
             switch newPhase {
             case .active:
-                NotificationManager.removeNotifications()
+                BGTaskManager.cancel(Constants.BG_TASK_NEXT_SESSION)
+                NotificationManager.removeNotifications([Constants.NOTIF_SESSION_END])
             case .background:
+                pomodoro.scheduleNextSession()
                 pomodoro.scheduleNotification()
             case .inactive:
                 break
